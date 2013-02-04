@@ -1,0 +1,14 @@
+plugin.tx_faqbase {
+	view {
+		# cat=plugin.tx_faqbase/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:faq_base/Resources/Private/Templates/
+		# cat=plugin.tx_faqbase/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:faq_base/Resources/Private/Partials/
+		# cat=plugin.tx_faqbase/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:faq_base/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_faqbase//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}

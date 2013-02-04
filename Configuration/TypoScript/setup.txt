@@ -1,0 +1,39 @@
+plugin.tx_faqbase {
+	view {
+		templateRootPath = {$plugin.tx_faqbase.view.templateRootPath}
+		partialRootPath = {$plugin.tx_faqbase.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_faqbase.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_faqbase.persistence.storagePid}
+	}
+	features {
+		# uncomment the following line to enable the new Property Mapper.
+		# rewrittenPropertyMapper = 1
+	}
+}
+
+plugin.tx_faqbase._CSS_DEFAULT_STYLE (
+	textarea.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	input.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	.tx-faq-base table {
+		border-collapse:separate;
+		border-spacing:10px;
+	}
+
+	.tx-faq-base table th {
+		font-weight:bold;
+	}
+
+	.tx-faq-base table td {
+		vertical-align:top;
+	}
+)
