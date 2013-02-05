@@ -98,7 +98,7 @@ $TCA['tx_faqbase_domain_model_entry'] = array(
 			'label' => 'LLL:EXT:faq_base/Resources/Private/Language/locallang_db.xlf:tx_faqbase_domain_model_entry.question',
 			'config' => array(
 				'type' => 'input',
-				'size' => 30,
+				'size' => 70,
 				'eval' => 'trim,required'
 			),
 		),
