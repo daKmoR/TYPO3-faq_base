@@ -35,27 +35,21 @@ namespace TYPO3\FaqBase\Domain\Model;
 class Entry extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
-	 * Question
-	 *
 	 * @var \string
 	 * @validate NotEmpty
 	 */
 	protected $question;
 
 	/**
-	 * Answer
-	 *
 	 * @var \string
 	 * @validate NotEmpty
 	 */
 	protected $answer;
 
 	/**
-	 * category
-	 *
-	 * @var \TYPO3\CMS\Extbase\Domain\Model\Category
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category>
 	 */
-	protected $category;
+	protected $categories;
 
 	/**
 	 * __construct
@@ -63,27 +57,10 @@ class Entry extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return Entry
 	 */
 	public function __construct() {
-		//Do not remove the next line: It would break the functionality
-		$this->initStorageObjects();
+		$this->categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 	/**
-	 * Initializes all ObjectStorage properties.
-	 *
-	 * @return void
-	 */
-	protected function initStorageObjects() {
-		/**
-		 * Do not modify this method!
-		 * It will be rewritten on each save in the extension builder
-		 * You may modify the constructor of this class instead
-		 */
-		$this->category = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-	}
-
-	/**
-	 * Returns the question
-	 *
 	 * @return \string $question
 	 */
 	public function getQuestion() {
@@ -91,8 +68,6 @@ class Entry extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * Sets the question
-	 *
 	 * @param \string $question
 	 * @return void
 	 */
@@ -120,42 +95,34 @@ class Entry extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * Adds a
-	 *
-	 * @param Tx_Extbase_Domain_Model_Category $category
+	 * @param \TYPO3\CMS\Extbase\Domain\Model\Category $category
 	 * @return void
 	 */
-	public function addCategory(Tx_Extbase_Domain_Model_Category $category) {
-		$this->category->attach($category);
+	public function addCategory(\TYPO3\CMS\Extbase\Domain\Model\Category $category) {
+		$this->categories->attach($category);
 	}
 
 	/**
-	 * Removes a
-	 *
-	 * @param Tx_Extbase_Domain_Model_Category $categoryToRemove The  to be removed
+	 * @param \TYPO3\CMS\Extbase\Domain\Model\Category $categoryToRemove The Category to be removed
 	 * @return void
 	 */
-	public function removeCategory(Tx_Extbase_Domain_Model_Category $categoryToRemove) {
-		$this->category->detach($categoryToRemove);
+	public function removeCategory(\TYPO3\CMS\Extbase\Domain\Model\Category $categoryToRemove) {
+		$this->categories->detach($categoryToRemove);
 	}
 
 	/**
-	 * Returns the category
-	 *
-	 * @return \TYPO3\CMS\Extbase\Domain\Model\Category
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category> $categories
 	 */
-	public function getCategory() {
-		return $this->category;
+	public function getCategories() {
+		return $this->categories;
 	}
 
 	/**
-	 * Sets the category
-	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_Extbase_Domain_Model_Category> $category
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category> $categories
 	 * @return void
 	 */
-	public function setCategory(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $category) {
-		$this->category = $category;
+	public function setCategories(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $categories) {
+		$this->categories = $categories;
 	}
 
 }

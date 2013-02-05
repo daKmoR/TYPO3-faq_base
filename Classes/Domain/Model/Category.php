@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\FaqBase\Controller;
+namespace TYPO3\FaqBase\Domain\Model;
 
 /***************************************************************
  *  Copyright notice
@@ -26,34 +26,27 @@ namespace TYPO3\FaqBase\Controller;
  ***************************************************************/
 
 /**
+ *
+ *
  * @package faq_base
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ *
  */
-class EntryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category {
 
 	/**
-	 * @var \TYPO3\FaqBase\Domain\Repository\EntryRepository
-	 * @inject
+	 * @return mixed
 	 */
-	protected $entryRepository;
-
-	/**
-	 * @var \TYPO3\FaqBase\Domain\Repository\CategoryRepository
-	 * @inject
-	 */
-	protected $categoryRepository;
-
-	/**
-	 * @return void
-	 */
-	public function listAction() {
-		$categories = array();
-		$categoriesUid = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $this->settings['categories'], TRUE);
-		foreach($categoriesUid as $categoryUid) {
-			$categories[] = $this->categoryRepository->findByUid($categoryUid);
+	public function getFaqs() {
+		$cleanedFaqs = array();
+		$faqs = \TYPO3\CMS\Core\Category\Collection\CategoryCollection::load($this->getUid(), TRUE, 'tx_faqbase_domain_model_entry');
+		foreach ($faqs as $faq) {
+			if ($faq['deleted'] === '0') {
+				$cleanedFaqs[] = $faq;
+			}
 		}
 
-		$this->view->assign('categories', $categories);
+		return $cleanedFaqs;
 	}
 
 }

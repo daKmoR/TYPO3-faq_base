@@ -1,18 +1,11 @@
 
+<f:for each="{categories}" as="category">
+	<h4>{category.title}</h4>
 
-<f:groupedFor each="{entries}" as="groupedEntries" groupBy="category" groupKey="category">
-	<h1>{category.title}</h1>
-
-	<f:for each="{groupedEntries}" as="entry">
-		<div class="faq" style="border-bottom:1px solid pink;">
-			<div class="question">{entry.question}</div>
-			<div class="answer">
-				<f:format.html>{entry.answer}</f:format.html>
-			</div>
-
-
-		</div>
+	<f:for each="{category.faqs}" as="faq">
+		<h5>{faq.question}</h5>
+		<p>{faq.answer}</p>
 	</f:for>
-	
-	<hr />
-</f:groupedFor>
+
+</f:for>
+

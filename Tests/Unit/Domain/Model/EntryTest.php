@@ -5,7 +5,7 @@ namespace TYPO3\FaqBase\Tests;
  *  Copyright notice
  *
  *  (c) 2013 Georg Ringer <typo3@ringerge.org>
- *  			
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -50,8 +50,8 @@ class EntryTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	public function tearDown() {
 		unset($this->fixture);
 	}
-	
-	
+
+
 	/**
 	 * @test
 	 */
@@ -60,7 +60,7 @@ class EntryTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
 	 * @test
 	 */
-	public function setQuestionForStringSetsQuestion() { 
+	public function setQuestionForStringSetsQuestion() {
 		$this->fixture->setQuestion('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -68,7 +68,7 @@ class EntryTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 			$this->fixture->getQuestion()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
@@ -77,7 +77,7 @@ class EntryTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
 	 * @test
 	 */
-	public function setAnswerForStringSetsAnswer() { 
+	public function setAnswerForStringSetsAnswer() {
 		$this->fixture->setAnswer('Conceived at T3CON10');
 
 		$this->assertSame(
@@ -85,33 +85,33 @@ class EntryTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 			$this->fixture->getAnswer()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
-	public function getCategoryReturnsInitialValueFor() { 
+	public function getCategoryReturnsInitialValueFor() {
 		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
 		$this->assertEquals(
 			$newObjectStorage,
-			$this->fixture->getCategory()
+			$this->fixture->getCategories()
 		);
 	}
 
 	/**
 	 * @test
 	 */
-	public function setCategoryForObjectStorageContainingSetsCategory() { 
+	public function setCategoryForObjectStorageContainingSetsCategory() {
 		$category = new Tx_Extbase_Domain_Model_Category();
 		$objectStorageHoldingExactlyOneCategory = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
 		$objectStorageHoldingExactlyOneCategory->attach($category);
-		$this->fixture->setCategory($objectStorageHoldingExactlyOneCategory);
+		$this->fixture->setCategories($objectStorageHoldingExactlyOneCategory);
 
 		$this->assertSame(
 			$objectStorageHoldingExactlyOneCategory,
-			$this->fixture->getCategory()
+			$this->fixture->getCategories()
 		);
 	}
-	
+
 	/**
 	 * @test
 	 */
@@ -123,7 +123,7 @@ class EntryTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 
 		$this->assertEquals(
 			$objectStorageHoldingExactlyOneCategory,
-			$this->fixture->getCategory()
+			$this->fixture->getCategories()
 		);
 	}
 
@@ -140,9 +140,9 @@ class EntryTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 
 		$this->assertEquals(
 			$localObjectStorage,
-			$this->fixture->getCategory()
+			$this->fixture->getCategories()
 		);
 	}
-	
+
 }
 ?>

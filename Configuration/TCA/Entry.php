@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_faqbase_domain_model_entry'] = array(
 	'ctrl' => $TCA['tx_faqbase_domain_model_entry']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, question, answer, category',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, question, answer',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, question, answer, category,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, question, answer,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -109,7 +109,7 @@ $TCA['tx_faqbase_domain_model_entry'] = array(
 				'type' => 'text',
 				'cols' => 40,
 				'rows' => 15,
-				'eval' => 'trim,required',
+				'eval' => 'trim',
 				'wizards' => array(
 					'RTE' => array(
 						'icon' => 'wizard_rte2.gif',
@@ -122,28 +122,6 @@ $TCA['tx_faqbase_domain_model_entry'] = array(
 				)
 			),
 			'defaultExtras' => 'richtext:rte_transform[flag=rte_enabled|mode=ts]',
-		),
-		'category' => array(
-			'exclude' => 0,
-			'label' => 'LLL:EXT:faq_base/Resources/Private/Language/locallang_db.xlf:tx_faqbase_domain_model_entry.category',
-			'config' => array(
-				'type' => 'select',
-				'foreign_table' => 'sys_category',
-				'MM' => 'tx_faqbase_entry__mm',
-				'size' => 10,
-				'autoSizeMax' => 30,
-				'maxitems' => 1,
-				'multiple' => 0,
-				'renderMode' => 'tree',
-				'treeConfig' => array(
-					'dataProvider' => 'Tx_News_TreeProvider_DatabaseTreeDataProvider',
-					'parentField' => 'parent',
-					'appearance' => array(
-						'showHeader' => TRUE,
-						'allowRecursiveMode' => TRUE,
-					),
-				),
-			),
 		),
 	),
 );

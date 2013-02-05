@@ -12,15 +12,12 @@ if (!defined('TYPO3_MODE')) {
 $extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($_EXTKEY);
 $pluginSignature = strtolower($extensionName) . '_faq';
 
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,recursive,select_key,pages';
+//$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,recursive,select_key,pages';
+
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform.xml');
 
-
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Simple extbase FAQ');
-
-
-
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_faqbase_domain_model_entry', 'EXT:faq_base/Resources/Private/Language/locallang_csh_tx_faqbase_domain_model_entry.xlf');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_faqbase_domain_model_entry');
@@ -51,5 +48,8 @@ $TCA['tx_faqbase_domain_model_entry'] = array(
 	),
 );
 
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::makeCategorizable(
+	$_EXTKEY, 'tx_faqbase_domain_model_entry', 'categories', $options = array()
+);
 
 ?>

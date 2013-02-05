@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\FaqBase\Controller;
+namespace TYPO3\FaqBase\Domain\Repository;
 
 /***************************************************************
  *  Copyright notice
@@ -26,35 +26,13 @@ namespace TYPO3\FaqBase\Controller;
  ***************************************************************/
 
 /**
+ *
+ *
  * @package faq_base
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ *
  */
-class EntryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
-
-	/**
-	 * @var \TYPO3\FaqBase\Domain\Repository\EntryRepository
-	 * @inject
-	 */
-	protected $entryRepository;
-
-	/**
-	 * @var \TYPO3\FaqBase\Domain\Repository\CategoryRepository
-	 * @inject
-	 */
-	protected $categoryRepository;
-
-	/**
-	 * @return void
-	 */
-	public function listAction() {
-		$categories = array();
-		$categoriesUid = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $this->settings['categories'], TRUE);
-		foreach($categoriesUid as $categoryUid) {
-			$categories[] = $this->categoryRepository->findByUid($categoryUid);
-		}
-
-		$this->view->assign('categories', $categories);
-	}
+class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRepository {
 
 }
 

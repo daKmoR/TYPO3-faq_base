@@ -1,0 +1,16 @@
+config.tx_extbase {
+	persistence {
+		classes {
+			TYPO3\CMS\Extbase\Domain\Model\Category {
+				subclasses {
+					TYPO3_FaqBase_Domain_Model_Category = TYPO3_FaqBase_Domain_Model_Category
+				}
+			}
+			TYPO3\FaqBase\Domain\Model\Category {
+				mapping {
+					tableName = sys_category
+				}
+			}
+		}
+	}
+}
