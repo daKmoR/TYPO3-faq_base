@@ -39,7 +39,28 @@ class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category {
 	 */
 	public function getFaqs() {
 		$cleanedFaqs = array();
-		$faqs = \TYPO3\CMS\Core\Category\Collection\CategoryCollection::load($this->getUid(), TRUE, 'tx_faqbase_domain_model_entry');
+//		$faqs = \TYPO3\CMS\Core\Category\Collection\CategoryCollection::load($this->getUid(), TRUE, 'tx_faqbase_domain_model_entry');
+
+		// @toDo: above function is buggy :/ fetch them manually
+
+		$relatedRecords = array();
+		$resource = $GLOBALS['TYPO3_DB']->exec_SELECT_mm_query(
+			'tx_faqbase_domain_model_entry' . '.*',
+			'sys_category',
+			'sys_category_record_mm',
+			'tx_faqbase_domain_model_entry',
+			'AND sys_category.uid=' . intval($this->getUid()) . ' AND sys_category_record_mm.tablenames = "tx_faqbase_domain_model_entry"'
+		);
+
+		if ($resource) {
+			while ($record = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($resource)) {
+				$relatedRecords[] = $record;
+			}
+			$GLOBALS['TYPO3_DB']->sql_free_result($resource);
+		}
+
+		$faqs = $relatedRecords;
+
 		foreach ($faqs as $faq) {
 			if ($faq['deleted'] === '0') {
 				$cleanedFaqs[] = $faq;
