@@ -49,7 +49,7 @@ class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category {
 			'sys_category',
 			'sys_category_record_mm',
 			'tx_faqbase_domain_model_entry',
-			'AND sys_category.uid=' . intval($this->getUid()) . ' AND sys_category_record_mm.tablenames = "tx_faqbase_domain_model_entry"'
+			'AND sys_category.uid=' . intval($this->getUid()) . ' AND sys_category_record_mm.tablenames = "tx_faqbase_domain_model_entry"' . ' AND tx_faqbase_domain_model_entry.sys_language_uid=' . $GLOBALS['TSFE']->sys_language_uid
 		);
 
 		if ($resource) {
