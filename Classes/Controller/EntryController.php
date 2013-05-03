@@ -44,6 +44,36 @@ class EntryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	protected $categoryRepository;
 
 	/**
+	 * @var integer
+	 */
+	protected $originalLanguage = false;
+
+	/**
+	 * Handles a request. The result output is returned by altering the given response.
+	 *
+	 * @param \TYPO3\CMS\Extbase\Mvc\RequestInterface $request The request object
+	 * @param \TYPO3\CMS\Extbase\Mvc\ResponseInterface $response The response, modified by this handler
+	 * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
+	 * @return void
+	 */
+	public function processRequest(\TYPO3\CMS\Extbase\Mvc\RequestInterface $request, \TYPO3\CMS\Extbase\Mvc\ResponseInterface $response) {
+		parent::processRequest($request, $response);
+		if ($this->originalLanguage !== false) {
+			$GLOBALS['TSFE']->sys_language_content = $this->originalLanguage;
+		}
+	}
+
+	/*
+	 *
+	 */
+	public function initializeAction() {
+		if ($this->settings['forceLanguageUid'] > 0) {
+			$this->originalLanguage = $GLOBALS['TSFE']->sys_language_content;
+			$GLOBALS['TSFE']->sys_language_content = $this->settings['forceLanguageUid'];
+		}
+	}
+
+	/**
 	 * @return void
 	 */
 	public function listAction() {
