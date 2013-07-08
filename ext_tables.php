@@ -49,7 +49,10 @@ $TCA['tx_faqbase_domain_model_entry'] = array(
 );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::makeCategorizable(
-	$_EXTKEY, 'tx_faqbase_domain_model_entry', 'categories', $options = array()
+	$_EXTKEY, 'tx_faqbase_domain_model_entry', 'categories',
+		array('fieldConfiguration' =>
+			array('foreign_table_where' => ' AND sys_language_uid = 0 ORDER BY sys_category.title ASC')
+		)
 );
 
 ?>
