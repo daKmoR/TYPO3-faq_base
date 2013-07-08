@@ -55,4 +55,7 @@ $TCA['tx_faqbase_domain_model_entry'] = array(
 		)
 );
 
+// hide in language overlays
+$GLOBALS['TCA']['tx_faqbase_domain_model_entry']['columns']['categories']['displayCond'] = 'FIELD:sys_language_uid:=:0';
+
 ?>
