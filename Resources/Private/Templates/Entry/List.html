@@ -4,7 +4,7 @@
 
 		<f:for each="{category.faqs}" as="faq">
 			<div class="faq">
-				<h5 class="question" data-trigger="Tween" data-tween-toggle="!div.faq div.answer">{faq.question}</h5>
+				<h5 class="question" data-trigger="tween" data-tween-toggle="!div.faq div.answer">{faq.question}</h5>
 				<div class="answer">
 					{faq.answer -> f:format.html()}
 				</div>
